@@ -28,15 +28,18 @@ export default function LoginPage() {
 
     try {
       if (adminMode) {
-        // Simple admin authentication - replace with your actual admin password
+        // Simple admin authentication
         const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123"
-        if (adminPassword !== ADMIN_PASSWORD) {
+        console.log("Comparing:", adminPassword, "with:", ADMIN_PASSWORD)
+        if (adminPassword.trim() !== ADMIN_PASSWORD.trim()) {
           setError("Invalid admin password")
           setIsLoading(false)
           return
         }
         // Store admin access in session storage temporarily
-        sessionStorage.setItem("adminMode", "true")
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem("adminMode", "true")
+        }
         router.push("/dashboard")
       } else {
         const supabase = createClient()

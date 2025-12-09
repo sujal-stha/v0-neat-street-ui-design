@@ -1,72 +1,29 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { MapPin, Truck, Clock, AlertCircle, Map } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { createClient } from "@/lib/supabase/client"
 
-const routes = [
-  {
-    id: "route-a",
-    name: "Route A",
-    vehicle: "Vehicle 1",
-    status: "active",
-    stops: 12,
-    distance: 85,
-    duration: "4h 30m",
-    stops_list: [
-      { id: 1, address: "123 Main St", time: "09:00", waste: 2.5 },
-      { id: 2, address: "456 Oak Ave", time: "09:25", waste: 1.8 },
-      { id: 3, address: "789 Pine Rd", time: "09:50", waste: 3.2 },
-      { id: 4, address: "321 Elm St", time: "10:15", waste: 1.5 },
-      { id: 5, address: "654 Maple Dr", time: "10:45", waste: 2.1 },
-      { id: 6, address: "987 Cedar Ln", time: "11:15", waste: 1.9 },
-    ],
-  },
-  {
-    id: "route-b",
-    name: "Route B",
-    vehicle: "Vehicle 2",
-    status: "active",
-    stops: 10,
-    distance: 72,
-    duration: "4h 15m",
-    stops_list: [
-      { id: 1, address: "111 Birch St", time: "09:00", waste: 2.0 },
-      { id: 2, address: "222 Spruce Ave", time: "09:30", waste: 1.7 },
-      { id: 3, address: "333 Ash Rd", time: "10:00", waste: 2.8 },
-      { id: 4, address: "444 Willow St", time: "10:30", waste: 1.6 },
-      { id: 5, address: "555 Poplar Dr", time: "11:00", waste: 2.2 },
-    ],
-  },
-  {
-    id: "route-c",
-    name: "Route C",
-    vehicle: "Vehicle 3",
-    status: "pending",
-    stops: 15,
-    distance: 95,
-    duration: "5h 00m",
-    stops_list: [
-      { id: 1, address: "101 Hackberry St", time: "08:30", waste: 2.3 },
-      { id: 2, address: "202 Sycamore Ave", time: "09:00", waste: 1.9 },
-      { id: 3, address: "303 Fir Rd", time: "09:35", waste: 3.0 },
-    ],
-  },
-  {
-    id: "route-d",
-    name: "Route D",
-    vehicle: "Vehicle 4",
-    status: "completed",
-    stops: 8,
-    distance: 65,
-    duration: "3h 45m",
-    stops_list: [
-      { id: 1, address: "505 Juniper St", time: "08:00", waste: 2.1 },
-      { id: 2, address: "606 Larch Ave", time: "08:25", waste: 1.8 },
-    ],
-  },
-]
+interface RouteStop {
+  id: string
+  address: string
+  time: string
+  waste: number
+  order_index: number
+}
+
+interface RouteData {
+  id: string
+  name: string
+  vehicle: string
+  status: string
+  stops: number
+  distance: number
+  duration: string
+  stops_list: RouteStop[]
+}
 
 const statusColors = {
   active: "bg-primary/20 text-primary",
@@ -75,9 +32,91 @@ const statusColors = {
 }
 
 export default function VehicleRoute() {
-  const [selectedRoute, setSelectedRoute] = useState<string | null>("route-a")
+  const [selectedRoute, setSelectedRoute] = useState<string | null>(null)
   const [showMap, setShowMap] = useState(false)
+  const [routes, setRoutes] = useState<RouteData[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchRoutes()
+  }, [])
+
+  const fetchRoutes = async () => {
+    const supabase = createClient()
+    
+    try {
+      // Fetch routes with vehicle and stops
+      const { data: routesData } = await supabase
+        .from('routes')
+        .select(`
+          id,
+          name,
+          status,
+          total_stops,
+          distance,
+          duration,
+          vehicles (
+            name
+          )
+        `)
+        .order('name')
+
+      if (routesData) {
+        const processedRoutes: RouteData[] = []
+        
+        for (const route of routesData) {
+          // Fetch stops for each route
+          const { data: stops } = await supabase
+            .from('route_stops')
+            .select('*')
+            .eq('route_id', route.id)
+            .order('order_index')
+
+          const routeStops: RouteStop[] = (stops || []).map((stop: any) => ({
+            id: stop.id,
+            address: stop.address,
+            time: stop.scheduled_time || 'TBD',
+            waste: Number(stop.expected_waste) || 0,
+            order_index: stop.order_index
+          }))
+
+          processedRoutes.push({
+            id: route.id,
+            name: route.name,
+            vehicle: (route as any).vehicles?.name || 'Unassigned',
+            status: route.status,
+            stops: route.total_stops,
+            distance: Number(route.distance),
+            duration: route.duration || 'TBD',
+            stops_list: routeStops
+          })
+        }
+
+        setRoutes(processedRoutes)
+        if (processedRoutes.length > 0) {
+          setSelectedRoute(processedRoutes[0].id)
+        }
+      }
+
+    } catch (error) {
+      console.error('Error fetching routes:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const currentRoute = routes.find((r) => r.id === selectedRoute)
+
+  if (loading) {
+    return (
+      <div className="eco-gradient min-h-screen p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading routes...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="eco-gradient min-h-screen p-4 sm:p-6 lg:p-8">
@@ -195,17 +234,25 @@ export default function VehicleRoute() {
                         </tr>
                       </thead>
                       <tbody>
-                        {currentRoute.stops_list.map((stop) => (
-                          <tr
-                            key={stop.id}
-                            className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
-                          >
-                            <td className="px-6 py-4 font-medium text-foreground">#{stop.id}</td>
-                            <td className="px-6 py-4 text-foreground">{stop.address}</td>
-                            <td className="px-6 py-4 text-muted-foreground">{stop.time}</td>
-                            <td className="px-6 py-4 text-right text-foreground font-semibold">{stop.waste}</td>
+                        {currentRoute.stops_list.length === 0 ? (
+                          <tr>
+                            <td colSpan={4} className="px-6 py-8 text-center text-muted-foreground">
+                              No stops found for this route
+                            </td>
                           </tr>
-                        ))}
+                        ) : (
+                          currentRoute.stops_list.map((stop, index) => (
+                            <tr
+                              key={stop.id}
+                              className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
+                            >
+                              <td className="px-6 py-4 font-medium text-foreground">#{index + 1}</td>
+                              <td className="px-6 py-4 text-foreground">{stop.address}</td>
+                              <td className="px-6 py-4 text-muted-foreground">{stop.time}</td>
+                              <td className="px-6 py-4 text-right text-foreground font-semibold">{stop.waste}</td>
+                            </tr>
+                          ))
+                        )}
                       </tbody>
                     </table>
                   </div>

@@ -1,35 +1,194 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { Card } from "@/components/ui/card"
-import { useState } from "react"
+import { createClient } from "@/lib/supabase/client"
 
-const costData = [
-  { type: "Organic", cost: 0, color: "var(--primary)" },
-  { type: "Plastic", cost: 4.5, color: "var(--secondary)" },
-  { type: "Metal", cost: 8.0, color: "var(--accent)" },
-  { type: "Paper", cost: 2.0, color: "var(--soft-yellow)" },
-]
+interface CostData {
+  type: string
+  cost: number
+  color: string
+}
 
-const vehicleCostData = [
-  { vehicle: "Vehicle 1", fuel: 45, maintenance: 25, insurance: 60, route: "Route A" },
-  { vehicle: "Vehicle 2", fuel: 52, maintenance: 15, insurance: 60, route: "Route B" },
-  { vehicle: "Vehicle 3", fuel: 38, maintenance: 40, insurance: 60, route: "Route C" },
-  { vehicle: "Vehicle 4", fuel: 48, maintenance: 20, insurance: 60, route: "Route D" },
-]
+interface VehicleCostData {
+  vehicle: string
+  fuel: number
+  maintenance: number
+  insurance: number
+  route: string
+}
 
-const monthlyData = [
-  { week: "Week 1", waste: 8, vehicle: 35 },
-  { week: "Week 2", waste: 9, vehicle: 38 },
-  { week: "Week 3", waste: 10, vehicle: 40 },
-  { week: "Week 4", waste: 8.5, vehicle: 36 },
-]
+interface MunicipalRate {
+  type: string
+  rate: string
+  freq: string
+  updated: string
+}
+
+interface MonthlyData {
+  week: string
+  waste: number
+  vehicle: number
+}
 
 export default function CostCalculator() {
   const [activeTab, setActiveTab] = useState<"waste" | "vehicle">("waste")
+  const [costData, setCostData] = useState<CostData[]>([])
+  const [vehicleCostData, setVehicleCostData] = useState<VehicleCostData[]>([])
+  const [municipalRates, setMunicipalRates] = useState<MunicipalRate[]>([])
+  const [monthlyData, setMonthlyData] = useState<MonthlyData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [wasteTotalCost, setWasteTotalCost] = useState(0)
+  const [vehicleTotalCost, setVehicleTotalCost] = useState(0)
 
-  const wasteTotalCost = costData.reduce((sum, item) => sum + item.cost, 0)
-  const vehicleTotalCost = vehicleCostData.reduce((sum, item) => sum + item.fuel + item.maintenance + item.insurance, 0)
+  useEffect(() => {
+    fetchCostData()
+  }, [])
+
+  const fetchCostData = async () => {
+    const supabase = createClient()
+    
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      // Fetch waste costs by type for current month
+      const monthStart = new Date()
+      monthStart.setDate(1)
+      monthStart.setHours(0, 0, 0, 0)
+
+      const { data: wasteLogs } = await supabase
+        .from('waste_logs')
+        .select(`
+          cost,
+          weight,
+          logged_at,
+          waste_types (
+            name,
+            color
+          )
+        `)
+        .eq('user_id', user.id)
+        .gte('logged_at', monthStart.toISOString())
+
+      // Process cost data by type
+      const costMap = new Map<string, { cost: number; color: string }>()
+      
+      wasteLogs?.forEach((log: any) => {
+        const typeName = log.waste_types?.name || 'Unknown'
+        const color = log.waste_types?.color || 'var(--primary)'
+        const existing = costMap.get(typeName) || { cost: 0, color }
+        costMap.set(typeName, { cost: existing.cost + Number(log.cost), color })
+      })
+
+      const processedCostData: CostData[] = Array.from(costMap.entries()).map(([type, data]) => ({
+        type,
+        cost: Number(data.cost.toFixed(2)),
+        color: data.color
+      }))
+
+      setCostData(processedCostData)
+      setWasteTotalCost(processedCostData.reduce((sum, item) => sum + item.cost, 0))
+
+      // Process monthly data by week
+      const weeklyMap = new Map<string, { waste: number; vehicle: number }>()
+      const today = new Date()
+      
+      for (let w = 1; w <= 4; w++) {
+        weeklyMap.set(`Week ${w}`, { waste: 0, vehicle: 0 })
+      }
+
+      wasteLogs?.forEach((log: any) => {
+        const logDate = new Date(log.logged_at)
+        const weekNum = Math.ceil(logDate.getDate() / 7)
+        const weekKey = `Week ${Math.min(weekNum, 4)}`
+        const existing = weeklyMap.get(weekKey)!
+        existing.waste += Number(log.cost)
+      })
+
+      // Fetch vehicle costs
+      const { data: vehicles } = await supabase
+        .from('vehicles')
+        .select(`
+          id,
+          name,
+          fuel_cost,
+          maintenance_cost,
+          insurance_cost,
+          routes (
+            name
+          )
+        `)
+
+      if (vehicles) {
+        const processedVehicles: VehicleCostData[] = vehicles.map((v: any) => ({
+          vehicle: v.name,
+          fuel: Number(v.fuel_cost),
+          maintenance: Number(v.maintenance_cost),
+          insurance: Number(v.insurance_cost),
+          route: v.routes?.[0]?.name || 'Not assigned'
+        }))
+        setVehicleCostData(processedVehicles)
+        
+        const totalVehicleCost = processedVehicles.reduce(
+          (sum, v) => sum + v.fuel + v.maintenance + v.insurance, 0
+        )
+        setVehicleTotalCost(totalVehicleCost)
+
+        // Add vehicle costs to weekly data
+        const vehicleCostPerWeek = totalVehicleCost / 4
+        weeklyMap.forEach((data) => {
+          data.vehicle = Number(vehicleCostPerWeek.toFixed(0))
+        })
+      }
+
+      const processedMonthlyData: MonthlyData[] = Array.from(weeklyMap.entries()).map(([week, data]) => ({
+        week,
+        waste: Number(data.waste.toFixed(0)),
+        vehicle: data.vehicle
+      }))
+      setMonthlyData(processedMonthlyData)
+
+      // Fetch municipal rates
+      const { data: rates } = await supabase
+        .from('municipal_rates')
+        .select(`
+          rate_per_kg,
+          collection_frequency,
+          last_updated,
+          waste_types (
+            name
+          )
+        `)
+
+      if (rates) {
+        const processedRates: MunicipalRate[] = rates.map((r: any) => ({
+          type: r.waste_types?.name || 'Unknown',
+          rate: `$${Number(r.rate_per_kg).toFixed(2)}/kg`,
+          freq: r.collection_frequency || 'Weekly',
+          updated: new Date(r.last_updated).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+        }))
+        setMunicipalRates(processedRates)
+      }
+
+    } catch (error) {
+      console.error('Error fetching cost data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading cost data...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8">
@@ -150,23 +309,25 @@ export default function CostCalculator() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[
-                      { type: "Organic", rate: "$0.00/kg", freq: "Weekly", updated: "Jan 2025" },
-                      { type: "Plastic", rate: "$1.50/kg", freq: "Bi-weekly", updated: "Jan 2025" },
-                      { type: "Metal", rate: "$2.00/kg", freq: "Monthly", updated: "Jan 2025" },
-                      { type: "Paper", rate: "$0.50/kg", freq: "Bi-weekly", updated: "Jan 2025" },
-                      { type: "Glass", rate: "$0.75/kg", freq: "Monthly", updated: "Jan 2025" },
-                    ].map((row) => (
-                      <tr
-                        key={row.type}
-                        className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
-                      >
-                        <td className="px-6 py-4 font-medium text-foreground">{row.type}</td>
-                        <td className="px-6 py-4 text-foreground">{row.rate}</td>
-                        <td className="px-6 py-4 text-muted-foreground">{row.freq}</td>
-                        <td className="px-6 py-4 text-muted-foreground">{row.updated}</td>
+                    {municipalRates.length === 0 ? (
+                      <tr>
+                        <td colSpan={4} className="px-6 py-8 text-center text-muted-foreground">
+                          No municipal rates found
+                        </td>
                       </tr>
-                    ))}
+                    ) : (
+                      municipalRates.map((row) => (
+                        <tr
+                          key={row.type}
+                          className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
+                        >
+                          <td className="px-6 py-4 font-medium text-foreground">{row.type}</td>
+                          <td className="px-6 py-4 text-foreground">{row.rate}</td>
+                          <td className="px-6 py-4 text-muted-foreground">{row.freq}</td>
+                          <td className="px-6 py-4 text-muted-foreground">{row.updated}</td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -182,14 +343,16 @@ export default function CostCalculator() {
                   Total Vehicle Cost This Month
                 </p>
                 <p className="text-4xl font-bold text-foreground">${vehicleTotalCost.toFixed(2)}</p>
-                <p className="text-xs text-muted-foreground mt-2">4 active vehicles</p>
+                <p className="text-xs text-muted-foreground mt-2">{vehicleCostData.length} active vehicles</p>
               </Card>
 
               <Card className="eco-card p-6 bg-gradient-to-br from-white to-primary/10 hover:shadow-md">
                 <p className="text-xs text-muted-foreground font-semibold mb-2 uppercase tracking-wide">
                   Average per Vehicle
                 </p>
-                <p className="text-4xl font-bold text-primary">${(vehicleTotalCost / 4).toFixed(2)}</p>
+                <p className="text-4xl font-bold text-primary">
+                  ${vehicleCostData.length > 0 ? (vehicleTotalCost / vehicleCostData.length).toFixed(2) : '0.00'}
+                </p>
                 <p className="text-xs text-muted-foreground mt-2">Monthly cost</p>
               </Card>
 
@@ -268,22 +431,30 @@ export default function CostCalculator() {
                     </tr>
                   </thead>
                   <tbody>
-                    {vehicleCostData.map((vehicle) => {
-                      const totalCost = vehicle.fuel + vehicle.maintenance + vehicle.insurance
-                      return (
-                        <tr
-                          key={vehicle.vehicle}
-                          className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
-                        >
-                          <td className="px-6 py-4 font-medium text-foreground">{vehicle.vehicle}</td>
-                          <td className="px-6 py-4 text-foreground">${vehicle.fuel}</td>
-                          <td className="px-6 py-4 text-foreground">${vehicle.maintenance}</td>
-                          <td className="px-6 py-4 text-foreground">${vehicle.insurance}</td>
-                          <td className="px-6 py-4 font-semibold text-foreground">${totalCost}</td>
-                          <td className="px-6 py-4 text-foreground">{vehicle.route}</td>
-                        </tr>
-                      )
-                    })}
+                    {vehicleCostData.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="px-6 py-8 text-center text-muted-foreground">
+                          No vehicle data found
+                        </td>
+                      </tr>
+                    ) : (
+                      vehicleCostData.map((vehicle) => {
+                        const totalCost = vehicle.fuel + vehicle.maintenance + vehicle.insurance
+                        return (
+                          <tr
+                            key={vehicle.vehicle}
+                            className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
+                          >
+                            <td className="px-6 py-4 font-medium text-foreground">{vehicle.vehicle}</td>
+                            <td className="px-6 py-4 text-foreground">${vehicle.fuel}</td>
+                            <td className="px-6 py-4 text-foreground">${vehicle.maintenance}</td>
+                            <td className="px-6 py-4 text-foreground">${vehicle.insurance}</td>
+                            <td className="px-6 py-4 font-semibold text-foreground">${totalCost}</td>
+                            <td className="px-6 py-4 text-foreground">{vehicle.route}</td>
+                          </tr>
+                        )
+                      })
+                    )}
                   </tbody>
                 </table>
               </div>
