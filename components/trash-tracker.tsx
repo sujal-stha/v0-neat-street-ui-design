@@ -1,42 +1,198 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import { Filter, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { createClient } from "@/lib/supabase/client"
+import type { WasteLog, WasteType } from "@/lib/types/database"
 
 interface TrashTrackerProps {
   onAddLog: () => void
 }
 
-const trashLogs = [
-  { id: 1, date: "Dec 8, 2025", type: "Organic", weight: 2.3, location: "Home", cost: 0 },
-  { id: 2, date: "Dec 7, 2025", type: "Plastic", weight: 0.8, location: "Office", cost: 1.2 },
-  { id: 3, date: "Dec 6, 2025", type: "Metal", weight: 0.5, location: "Home", cost: 2.5 },
-  { id: 4, date: "Dec 5, 2025", type: "Paper", weight: 1.2, location: "Office", cost: 0.6 },
-  { id: 5, date: "Dec 4, 2025", type: "Organic", weight: 1.8, location: "Home", cost: 0 },
-  { id: 6, date: "Dec 3, 2025", type: "Plastic", weight: 1.0, location: "Home", cost: 1.5 },
-]
+interface TrashLog {
+  id: string
+  date: string
+  type: string
+  weight: number
+  location: string
+  cost: number
+}
 
-const trendData = [
-  { name: "Organic", week1: 12, week2: 15, week3: 18 },
-  { name: "Plastic", week1: 8, week2: 10, week3: 9 },
-  { name: "Metal", week1: 4, week2: 5, week3: 6 },
-  { name: "Paper", week1: 6, week2: 7, week3: 8 },
-]
+interface TrendData {
+  name: string
+  week1: number
+  week2: number
+  week3: number
+}
 
-const typeColors = {
+const typeColors: { [key: string]: string } = {
   Organic: "bg-primary/20 text-primary",
   Plastic: "bg-secondary/20 text-secondary",
   Metal: "bg-accent/20 text-accent",
   Paper: "bg-yellow-100 text-yellow-700",
+  Glass: "bg-blue-100 text-blue-700",
 }
 
 export default function TrashTracker({ onAddLog }: TrashTrackerProps) {
   const [selectedType, setSelectedType] = useState<string | null>(null)
+  const [trashLogs, setTrashLogs] = useState<TrashLog[]>([])
+  const [trendData, setTrendData] = useState<TrendData[]>([])
+  const [wasteTypes, setWasteTypes] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchTrashData = useCallback(async () => {
+    const supabase = createClient()
+    
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      // Fetch waste types
+      const { data: types } = await supabase
+        .from('waste_types')
+        .select('name')
+        .order('name')
+
+      if (types) {
+        setWasteTypes(types.map(t => t.name))
+      }
+
+      // Fetch recent waste logs
+      const { data: logs } = await supabase
+        .from('waste_logs')
+        .select(`
+          id,
+          weight,
+          location,
+          cost,
+          logged_at,
+          waste_types (
+            name
+          )
+        `)
+        .eq('user_id', user.id)
+        .order('logged_at', { ascending: false })
+        .limit(50)
+
+      if (logs) {
+        const formattedLogs: TrashLog[] = logs.map((log: any) => ({
+          id: log.id,
+          date: new Date(log.logged_at).toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric' 
+          }),
+          type: log.waste_types?.name || 'Unknown',
+          weight: Number(log.weight),
+          location: log.location || 'Not specified',
+          cost: Number(log.cost) || 0
+        }))
+        setTrashLogs(formattedLogs)
+      }
+
+      // Fetch trend data (last 3 weeks by waste type)
+      const today = new Date()
+      const threeWeeksAgo = new Date(today.getTime() - 21 * 24 * 60 * 60 * 1000)
+      
+      const { data: trendLogs } = await supabase
+        .from('waste_logs')
+        .select(`
+          weight,
+          logged_at,
+          waste_types (
+            name
+          )
+        `)
+        .eq('user_id', user.id)
+        .gte('logged_at', threeWeeksAgo.toISOString())
+        .order('logged_at', { ascending: true })
+
+      if (trendLogs) {
+        // Process trend data by waste type and week
+        const trendMap = new Map<string, { week1: number; week2: number; week3: number }>()
+        
+        trendLogs.forEach((log: any) => {
+          const typeName = log.waste_types?.name || 'Unknown'
+          const logDate = new Date(log.logged_at)
+          const daysAgo = Math.floor((today.getTime() - logDate.getTime()) / (24 * 60 * 60 * 1000))
+          
+          if (!trendMap.has(typeName)) {
+            trendMap.set(typeName, { week1: 0, week2: 0, week3: 0 })
+          }
+          
+          const existing = trendMap.get(typeName)!
+          if (daysAgo < 7) {
+            existing.week3 += Number(log.weight)
+          } else if (daysAgo < 14) {
+            existing.week2 += Number(log.weight)
+          } else {
+            existing.week1 += Number(log.weight)
+          }
+        })
+
+        const processedTrendData: TrendData[] = Array.from(trendMap.entries()).map(([name, data]) => ({
+          name,
+          week1: Number(data.week1.toFixed(1)),
+          week2: Number(data.week2.toFixed(1)),
+          week3: Number(data.week3.toFixed(1))
+        }))
+
+        setTrendData(processedTrendData.length > 0 ? processedTrendData : [
+          { name: "No Data", week1: 0, week2: 0, week3: 0 }
+        ])
+      }
+
+    } catch (error) {
+      console.error('Error fetching trash data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  // Set up real-time subscription
+  useEffect(() => {
+    fetchTrashData()
+
+    const supabase = createClient()
+    
+    // Subscribe to waste_logs changes
+    const channel = supabase
+      .channel('trash-tracker-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'waste_logs'
+        },
+        (payload) => {
+          console.log('Real-time update received:', payload)
+          fetchTrashData() // Refresh data on any change
+        }
+      )
+      .subscribe()
+
+    // Cleanup subscription on unmount
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [fetchTrashData])
 
   const filteredLogs = selectedType ? trashLogs.filter((log) => log.type === selectedType) : trashLogs
+
+  if (loading) {
+    return (
+      <div className="eco-gradient min-h-screen p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading trash tracker...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="eco-gradient min-h-screen p-4 sm:p-6 lg:p-8">
@@ -86,7 +242,7 @@ export default function TrashTracker({ onAddLog }: TrashTrackerProps) {
               <Filter size={18} className="text-muted-foreground" />
               <span className="text-sm text-muted-foreground font-medium">Filter:</span>
             </div>
-            {["Organic", "Plastic", "Metal", "Paper"].map((type) => (
+            {wasteTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => setSelectedType(selectedType === type ? null : type)}
@@ -115,24 +271,32 @@ export default function TrashTracker({ onAddLog }: TrashTrackerProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredLogs.map((log) => (
-                    <tr
-                      key={log.id}
-                      className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
-                    >
-                      <td className="px-6 py-4 text-foreground">{log.date}</td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-semibold ${typeColors[log.type as keyof typeof typeColors]}`}
-                        >
-                          {log.type}
-                        </span>
+                  {filteredLogs.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-6 py-8 text-center text-muted-foreground">
+                        No waste logs found. Start logging your waste!
                       </td>
-                      <td className="px-6 py-4 text-foreground font-medium">{log.weight} kg</td>
-                      <td className="px-6 py-4 text-muted-foreground">{log.location}</td>
-                      <td className="px-6 py-4 text-right text-foreground font-medium">${log.cost.toFixed(2)}</td>
                     </tr>
-                  ))}
+                  ) : (
+                    filteredLogs.map((log) => (
+                      <tr
+                        key={log.id}
+                        className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200"
+                      >
+                        <td className="px-6 py-4 text-foreground">{log.date}</td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-semibold ${typeColors[log.type] || "bg-gray-100 text-gray-700"}`}
+                          >
+                            {log.type}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-foreground font-medium">{log.weight} kg</td>
+                        <td className="px-6 py-4 text-muted-foreground">{log.location}</td>
+                        <td className="px-6 py-4 text-right text-foreground font-medium">${log.cost.toFixed(2)}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

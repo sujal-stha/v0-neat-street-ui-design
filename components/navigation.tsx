@@ -10,6 +10,9 @@ interface NavigationProps {
 }
 
 export default function Navigation({ currentPage, setCurrentPage, userRole, setUserRole }: NavigationProps) {
+  // Check if user is authenticated as admin via sessionStorage (password login)
+  const isAuthenticatedAdmin = typeof window !== 'undefined' && sessionStorage.getItem("adminMode") === "true"
+
   const userNavItems = [
     { id: "dashboard", label: "Dashboard", icon: BarChart3 },
     { id: "tracker", label: "Trash Tracker", icon: Droplet },
@@ -26,7 +29,8 @@ export default function Navigation({ currentPage, setCurrentPage, userRole, setU
     { id: "vehicle", label: "Vehicle Route", icon: Truck },
   ]
 
-  const navItems = userRole === "admin" ? adminNavItems : userNavItems
+  // Only show admin nav if authenticated as admin
+  const navItems = (userRole === "admin" && isAuthenticatedAdmin) ? adminNavItems : userNavItems
 
   return (
     <nav className="fixed top-0 left-0 right-0 h-16 bg-white/95 border-b border-border/40 backdrop-blur-md z-50 shadow-sm">
@@ -57,28 +61,14 @@ export default function Navigation({ currentPage, setCurrentPage, userRole, setU
               </button>
             )
           })}
-          <div className="ml-4 pl-4 border-l border-border/40 flex items-center gap-2">
-            <button
-              onClick={() => setUserRole("user")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
-                userRole === "user"
-                  ? "bg-accent text-accent-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-border/60"
-              }`}
-            >
-              User
-            </button>
-            <button
-              onClick={() => setUserRole("admin")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
-                userRole === "admin"
-                  ? "bg-accent text-accent-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-border/60"
-              }`}
-            >
-              Admin
-            </button>
-          </div>
+          {/* Show Admin badge if authenticated as admin */}
+          {isAuthenticatedAdmin && (
+            <div className="ml-4 pl-4 border-l border-border/40">
+              <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary/20 text-primary">
+                Admin Mode
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="md:hidden flex items-center gap-2">
@@ -93,14 +83,12 @@ export default function Navigation({ currentPage, setCurrentPage, userRole, setU
               </option>
             ))}
           </select>
-          <select
-            value={userRole}
-            onChange={(e) => setUserRole(e.target.value as "user" | "admin")}
-            className="px-3 py-2 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
+          {/* Show Admin badge on mobile */}
+          {isAuthenticatedAdmin && (
+            <span className="px-2 py-1 rounded text-xs font-semibold bg-primary/20 text-primary">
+              Admin
+            </span>
+          )}
         </div>
       </div>
     </nav>

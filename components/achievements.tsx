@@ -1,61 +1,138 @@
 "use client"
 
+import { useEffect, useState, useCallback } from "react"
 import { Card } from "@/components/ui/card"
-import { Trophy, Star, Zap, Target, Crown, Heart } from "lucide-react"
+import { Trophy, Star, Zap, Target, Crown, Heart, Shield, Recycle } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
+import type { UserAchievement, Achievement } from "@/lib/types/database"
 
-const achievements = [
-  {
-    id: 1,
-    name: "Eco Starter",
-    description: "Log your first waste entry",
-    icon: Star,
-    unlocked: true,
-    progress: 100,
-  },
-  {
-    id: 2,
-    name: "Green Guardian",
-    description: "Achieve 75% green score",
-    icon: Trophy,
-    unlocked: true,
-    progress: 100,
-  },
-  {
-    id: 3,
-    name: "Recycling Master",
-    description: "Recycle 100kg of waste",
-    icon: Target,
-    unlocked: true,
-    progress: 100,
-  },
-  {
-    id: 4,
-    name: "Carbon Cutter",
-    description: "Reduce waste by 50%",
-    icon: Zap,
-    unlocked: false,
-    progress: 65,
-  },
-  {
-    id: 5,
-    name: "Sustainability Legend",
-    description: "Maintain 85% green score for 30 days",
-    icon: Crown,
-    unlocked: false,
-    progress: 45,
-  },
-  {
-    id: 6,
-    name: "Planet Protector",
-    description: "Save $100 through waste reduction",
-    icon: Heart,
-    unlocked: false,
-    progress: 72,
-  },
-]
+interface AchievementDisplay {
+  id: string
+  name: string
+  description: string
+  icon: any
+  unlocked: boolean
+  progress: number
+}
+
+const iconMap: { [key: string]: any } = {
+  Star,
+  Trophy,
+  Target,
+  Zap,
+  Crown,
+  Heart,
+  Shield,
+  Recycle,
+}
 
 export default function Achievements() {
+  const [achievements, setAchievements] = useState<AchievementDisplay[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchAchievements = useCallback(async () => {
+    const supabase = createClient()
+    
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      // Fetch user achievements with achievement details
+      const { data: userAchievements } = await supabase
+        .from('user_achievements')
+        .select(`
+          id,
+          progress,
+          unlocked,
+          achievements (
+            id,
+            name,
+            description,
+            icon,
+            requirement_type,
+            requirement_value
+          )
+        `)
+        .eq('user_id', user.id)
+
+      if (userAchievements && userAchievements.length > 0) {
+        const formattedAchievements: AchievementDisplay[] = userAchievements.map((ua: any) => ({
+          id: ua.achievements.id,
+          name: ua.achievements.name,
+          description: ua.achievements.description,
+          icon: iconMap[ua.achievements.icon] || Star,
+          unlocked: ua.unlocked,
+          progress: ua.progress
+        }))
+        setAchievements(formattedAchievements)
+      } else {
+        // Fetch all achievements if user doesn't have any yet
+        const { data: allAchievements } = await supabase
+          .from('achievements')
+          .select('*')
+          .order('requirement_value', { ascending: true })
+
+        if (allAchievements) {
+          const formattedAchievements: AchievementDisplay[] = allAchievements.map((a) => ({
+            id: a.id,
+            name: a.name,
+            description: a.description,
+            icon: iconMap[a.icon] || Star,
+            unlocked: false,
+            progress: 0
+          }))
+          setAchievements(formattedAchievements)
+        }
+      }
+
+    } catch (error) {
+      console.error('Error fetching achievements:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  // Set up real-time subscription
+  useEffect(() => {
+    fetchAchievements()
+
+    const supabase = createClient()
+    
+    // Subscribe to user_achievements changes
+    const channel = supabase
+      .channel('achievements-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'user_achievements'
+        },
+        (payload) => {
+          console.log('Achievements update:', payload)
+          fetchAchievements()
+        }
+      )
+      .subscribe()
+
+    // Cleanup subscription on unmount
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [fetchAchievements])
+
   const unlockedCount = achievements.filter((a) => a.unlocked).length
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading achievements...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8">

@@ -1,52 +1,83 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Leaf, Droplets, Zap, FileText, Gift } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
+import type { WasteType } from "@/lib/types/database"
 
-const wasteTypes = [
-  {
-    name: "Organic Waste",
-    icon: Leaf,
-    color: "from-primary to-bright-green",
-    description: "Food scraps, plant matter, and biodegradable items",
-    disposal: "Compost bin or green waste collection",
-    examples: ["Fruit & vegetable peels", "Coffee grounds", "Leaves & grass"],
-  },
-  {
-    name: "Plastic Waste",
-    icon: Droplets,
-    color: "from-secondary to-light-teal",
-    description: "Bottles, bags, containers, and packaging materials",
-    disposal: "Plastic recycling bin (separate by type if needed)",
-    examples: ["Bottles", "Bags", "Food containers", "Straws"],
-  },
-  {
-    name: "Metal & Electronics",
-    icon: Zap,
-    color: "from-accent to-primary",
-    description: "Cans, metal containers, and electronic waste",
-    disposal: "Metal recycling or e-waste collection center",
-    examples: ["Aluminum cans", "Steel containers", "Old phones"],
-  },
-  {
-    name: "Paper & Cardboard",
-    icon: FileText,
-    color: "from-soft-yellow to-accent",
-    description: "Newspapers, magazines, boxes, and cardboard",
-    disposal: "Paper recycling bin or cardboard collection",
-    examples: ["Newspapers", "Magazines", "Boxes", "Envelopes"],
-  },
-  {
-    name: "Glass Waste",
-    icon: Gift,
-    color: "from-light-teal to-secondary",
-    description: "Bottles, jars, and other glass containers",
-    disposal: "Glass recycling bin (separate from mixed recycling)",
-    examples: ["Bottles", "Jars", "Food containers"],
-  },
-]
+interface WasteTypeDisplay {
+  name: string
+  icon: any
+  color: string
+  description: string
+  disposal: string
+  examples: string[]
+}
+
+const iconMap: { [key: string]: any } = {
+  Leaf,
+  Droplets,
+  Zap,
+  FileText,
+  Gift,
+}
+
+const colorMap: { [key: string]: string } = {
+  Organic: "from-primary to-bright-green",
+  Plastic: "from-secondary to-light-teal",
+  Metal: "from-accent to-primary",
+  Paper: "from-soft-yellow to-accent",
+  Glass: "from-light-teal to-secondary",
+}
 
 export default function WasteTypes() {
+  const [wasteTypes, setWasteTypes] = useState<WasteTypeDisplay[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchWasteTypes()
+  }, [])
+
+  const fetchWasteTypes = async () => {
+    const supabase = createClient()
+    
+    try {
+      const { data } = await supabase
+        .from('waste_types')
+        .select('*')
+        .order('name')
+
+      if (data) {
+        const processedTypes: WasteTypeDisplay[] = data.map((type) => ({
+          name: type.name,
+          icon: iconMap[type.icon || 'Leaf'] || Leaf,
+          color: colorMap[type.name] || "from-primary to-accent",
+          description: type.description || '',
+          disposal: type.disposal_method || '',
+          examples: type.examples || []
+        }))
+        setWasteTypes(processedTypes)
+      }
+
+    } catch (error) {
+      console.error('Error fetching waste types:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading waste types...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-white to-background/80 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">

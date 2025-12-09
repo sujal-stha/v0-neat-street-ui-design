@@ -1,22 +1,63 @@
-import { redirect } from "next/navigation"
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
 import DashboardClient from "@/components/dashboard-client"
 
-export default async function DashboardPage() {
-  const supabase = await createClient()
+export default function DashboardPage() {
+  const [user, setUser] = useState<any>(null)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser()
+  useEffect(() => {
+    const checkAuth = async () => {
+      // Check for admin mode first
+      const adminMode = typeof window !== 'undefined' ? sessionStorage.getItem("adminMode") : null
+      
+      if (adminMode === "true") {
+        setIsAdmin(true)
+        setUser({ email: "Admin User", id: "admin" })
+        setLoading(false)
+        return
+      }
 
-  if (error || !user) {
-    redirect("/auth/login")
+      // Otherwise check Supabase auth
+      const supabase = createClient()
+      const { data: { user }, error } = await supabase.auth.getUser()
+
+      if (error || !user) {
+        router.push("/auth/login")
+        return
+      }
+
+      setUser(user)
+
+      // Check if user is admin from profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_admin')
+        .eq('id', user.id)
+        .single()
+
+      setIsAdmin(profile?.is_admin === true || user?.user_metadata?.is_admin === true)
+      setLoading(false)
+    }
+
+    checkAuth()
+  }, [router])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
   }
-
-  const isAdmin =
-    user?.user_metadata?.is_admin === true ||
-    (typeof sessionStorage !== "undefined" && sessionStorage.getItem("adminMode") === "true")
 
   return <DashboardClient user={user} isAdmin={isAdmin} />
 }
