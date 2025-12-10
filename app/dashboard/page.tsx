@@ -7,6 +7,7 @@ import DashboardClient from "@/components/dashboard-client"
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null)
+  const [username, setUsername] = useState<string | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
@@ -19,6 +20,7 @@ export default function DashboardPage() {
       if (adminMode === "true") {
         setIsAdmin(true)
         setUser({ email: "Admin User", id: "admin" })
+        setUsername("Administrator")
         setLoading(false)
         return
       }
@@ -34,14 +36,15 @@ export default function DashboardPage() {
 
       setUser(user)
 
-      // Check if user is admin from profile
+      // Check if user is admin from profile and get username
       const { data: profile } = await supabase
         .from('profiles')
-        .select('is_admin')
+        .select('is_admin, username')
         .eq('id', user.id)
         .single()
 
       setIsAdmin(profile?.is_admin === true || user?.user_metadata?.is_admin === true)
+      setUsername(profile?.username || user?.user_metadata?.username || null)
       setLoading(false)
     }
 
@@ -59,5 +62,5 @@ export default function DashboardPage() {
     )
   }
 
-  return <DashboardClient user={user} isAdmin={isAdmin} />
+  return <DashboardClient user={user} isAdmin={isAdmin} username={username} />
 }

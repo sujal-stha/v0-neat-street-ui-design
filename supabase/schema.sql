@@ -10,6 +10,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE profiles (
   id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE,
   full_name TEXT,
   avatar_url TEXT,
   is_admin BOOLEAN DEFAULT FALSE,
@@ -19,6 +20,9 @@ CREATE TABLE profiles (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Create index on username for faster lookups
+CREATE INDEX IF NOT EXISTS idx_profiles_username ON profiles(username);
 
 -- Enable RLS
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
@@ -45,8 +49,13 @@ CREATE POLICY "Service role can insert profiles" ON profiles
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO profiles (id, email, full_name)
-  VALUES (NEW.id, NEW.email, NEW.raw_user_meta_data->>'full_name');
+  INSERT INTO profiles (id, email, username, full_name)
+  VALUES (
+    NEW.id, 
+    NEW.email, 
+    NEW.raw_user_meta_data->>'username',
+    NEW.raw_user_meta_data->>'full_name'
+  );
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
