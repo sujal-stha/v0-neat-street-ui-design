@@ -13,6 +13,7 @@ import { useState } from "react"
 import { AlertCircle, CheckCircle } from "lucide-react"
 
 export default function SignUpPage() {
+  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [repeatPassword, setRepeatPassword] = useState("")
@@ -38,6 +39,12 @@ export default function SignUpPage() {
       return
     }
 
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters long")
+      setIsLoading(false)
+      return
+    }
+
     try {
       const supabase = createClient()
       const { error } = await supabase.auth.signUp({
@@ -45,6 +52,9 @@ export default function SignUpPage() {
         password,
         options: {
           emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
+          data: {
+            username: username,
+          }
         },
       })
       if (error) throw error
@@ -87,6 +97,20 @@ export default function SignUpPage() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSignUp} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="username">Username</Label>
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="johndoe"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    disabled={isLoading}
+                  />
+                  <p className="text-xs text-muted-foreground">This will be displayed publicly</p>
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input

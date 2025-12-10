@@ -317,6 +317,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 function SignUpPage() {
     _s();
+    const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [repeatPassword, setRepeatPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
@@ -338,13 +339,21 @@ function SignUpPage() {
             setIsLoading(false);
             return;
         }
+        if (username.length < 3) {
+            setError("Username must be at least 3 characters long");
+            setIsLoading(false);
+            return;
+        }
         try {
             const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
             const { error } = await supabase.auth.signUp({
                 email,
                 password,
                 options: {
-                    emailRedirectTo: ("TURBOPACK compile-time value", "http://localhost:3000/dashboard") || `${window.location.origin}/dashboard`
+                    emailRedirectTo: ("TURBOPACK compile-time value", "http://localhost:3000/dashboard") || `${window.location.origin}/dashboard`,
+                    data: {
+                        username: username
+                    }
                 }
             });
             if (error) throw error;
@@ -371,7 +380,7 @@ function SignUpPage() {
                             children: "NeatStreet"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                            lineNumber: 66,
+                            lineNumber: 76,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -379,13 +388,13 @@ function SignUpPage() {
                             children: "Create Your Account"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                            lineNumber: 67,
+                            lineNumber: 77,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                    lineNumber: 65,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, this),
                 success ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -400,7 +409,7 @@ function SignUpPage() {
                                     size: 48
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 84,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -408,7 +417,7 @@ function SignUpPage() {
                                     children: "Account Created!"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 75,
+                                    lineNumber: 85,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -416,23 +425,23 @@ function SignUpPage() {
                                     children: "Check your email to confirm your account. You'll be redirected to login shortly."
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 86,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                            lineNumber: 73,
+                            lineNumber: 83,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                        lineNumber: 72,
+                        lineNumber: 82,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                    lineNumber: 71,
+                    lineNumber: 81,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                     className: "eco-card",
@@ -444,20 +453,20 @@ function SignUpPage() {
                                     children: "Create Account"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 95,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                     children: "Join NeatStreet and start managing waste smarter"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 96,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                            lineNumber: 84,
+                            lineNumber: 94,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -470,11 +479,49 @@ function SignUpPage() {
                                             className: "space-y-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "username",
+                                                    children: "Username"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
+                                                    lineNumber: 101,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "username",
+                                                    type: "text",
+                                                    placeholder: "johndoe",
+                                                    required: true,
+                                                    value: username,
+                                                    onChange: (e)=>setUsername(e.target.value),
+                                                    disabled: isLoading
+                                                }, void 0, false, {
+                                                    fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
+                                                    lineNumber: 102,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs text-muted-foreground",
+                                                    children: "This will be displayed publicly"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
+                                                    lineNumber: 111,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
+                                            lineNumber: 100,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
                                                     htmlFor: "email",
                                                     children: "Email"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 91,
+                                                    lineNumber: 115,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -487,13 +534,13 @@ function SignUpPage() {
                                                     disabled: isLoading
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 92,
+                                                    lineNumber: 116,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 90,
+                                            lineNumber: 114,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -504,7 +551,7 @@ function SignUpPage() {
                                                     children: "Password"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 104,
+                                                    lineNumber: 128,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -517,7 +564,7 @@ function SignUpPage() {
                                                     disabled: isLoading
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 105,
+                                                    lineNumber: 129,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -525,13 +572,13 @@ function SignUpPage() {
                                                     children: "Minimum 8 characters"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 114,
+                                                    lineNumber: 138,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 103,
+                                            lineNumber: 127,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -542,7 +589,7 @@ function SignUpPage() {
                                                     children: "Confirm Password"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 142,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -555,13 +602,13 @@ function SignUpPage() {
                                                     disabled: isLoading
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 119,
+                                                    lineNumber: 143,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 141,
                                             columnNumber: 17
                                         }, this),
                                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -572,7 +619,7 @@ function SignUpPage() {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 132,
+                                                    lineNumber: 156,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -580,13 +627,13 @@ function SignUpPage() {
                                                     children: error
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 157,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 131,
+                                            lineNumber: 155,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -597,13 +644,13 @@ function SignUpPage() {
                                             children: isLoading ? "Creating Account..." : "Sign Up"
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 137,
+                                            lineNumber: 161,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 99,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -617,40 +664,40 @@ function SignUpPage() {
                                             children: "Sign in"
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 168,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                                    lineNumber: 142,
+                                    lineNumber: 166,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                            lineNumber: 88,
+                            lineNumber: 98,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-                    lineNumber: 83,
+                    lineNumber: 93,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-            lineNumber: 64,
+            lineNumber: 74,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/v0-neat-street-ui-design/app/auth/sign-up/page.tsx",
-        lineNumber: 63,
+        lineNumber: 73,
         columnNumber: 5
     }, this);
 }
-_s(SignUpPage, "+sOHqLcGSv1bqOt0p+S24dAw7No=", false, function() {
+_s(SignUpPage, "hssXNcpIxuilqWPrQ0be+9lh3zI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

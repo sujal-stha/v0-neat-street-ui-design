@@ -1,15 +1,27 @@
 "use client"
 
-import { Leaf, BarChart3, Droplet, DollarSign, Trophy, Truck } from "lucide-react"
+import { Leaf, BarChart3, Droplet, DollarSign, Trophy, Truck, LogOut } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface NavigationProps {
   currentPage: string
   setCurrentPage: (page: string) => void
   userRole: "user" | "admin"
   setUserRole: (role: "user" | "admin") => void
+  userEmail?: string
+  userLabel?: string
+  onLogout?: () => void
 }
 
-export default function Navigation({ currentPage, setCurrentPage, userRole, setUserRole }: NavigationProps) {
+export default function Navigation({ 
+  currentPage, 
+  setCurrentPage, 
+  userRole, 
+  setUserRole,
+  userEmail,
+  userLabel,
+  onLogout 
+}: NavigationProps) {
   // Check if user is authenticated as admin via sessionStorage (password login)
   const isAuthenticatedAdmin = typeof window !== 'undefined' && sessionStorage.getItem("adminMode") === "true"
 
@@ -63,32 +75,43 @@ export default function Navigation({ currentPage, setCurrentPage, userRole, setU
           })}
           {/* Show Admin badge if authenticated as admin */}
           {isAuthenticatedAdmin && (
-            <div className="ml-4 pl-4 border-l border-border/40">
-              <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary/20 text-primary">
-                Admin Mode
+            <div className="ml-2 pl-2 border-l border-border/40">
+              <span className="px-2 py-1 rounded-lg text-xs font-semibold bg-primary/20 text-primary">
+                Admin
               </span>
             </div>
           )}
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
-          <select
-            value={currentPage}
-            onChange={(e) => setCurrentPage(e.target.value)}
-            className="px-3 py-2 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            {navItems.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-          {/* Show Admin badge on mobile */}
-          {isAuthenticatedAdmin && (
-            <span className="px-2 py-1 rounded text-xs font-semibold bg-primary/20 text-primary">
-              Admin
-            </span>
+        {/* User info and logout */}
+        <div className="flex items-center gap-2">
+          {userEmail && (
+            <div className="text-right hidden sm:block">
+              <p className="text-sm font-medium text-foreground truncate max-w-[120px]">{userEmail}</p>
+              <p className="text-xs text-muted-foreground">{userLabel}</p>
+            </div>
           )}
+          {onLogout && (
+            <Button variant="outline" size="sm" onClick={onLogout} className="gap-1 shrink-0">
+              <LogOut size={14} />
+              <span className="hidden sm:inline">Logout</span>
+            </Button>
+          )}
+
+          {/* Mobile nav dropdown */}
+          <div className="md:hidden">
+            <select
+              value={currentPage}
+              onChange={(e) => setCurrentPage(e.target.value)}
+              className="px-2 py-1.5 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              {navItems.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </nav>

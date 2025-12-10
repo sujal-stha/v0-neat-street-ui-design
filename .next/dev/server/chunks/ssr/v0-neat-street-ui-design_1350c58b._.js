@@ -13,211 +13,6 @@ function createClient() {
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(("TURBOPACK compile-time value", "https://onzfkhuzgycuenjshrqf.supabase.co"), ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uemZraHV6Z3ljdWVuanNocnFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyMDk4NDUsImV4cCI6MjA4MDc4NTg0NX0.qQ8Ce1iyAruVf0FBOKbYKYXkSsGWMGsH2j6Q3kyt7ow"));
 }
 }),
-"[project]/v0-neat-street-ui-design/components/navigation.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "default",
-    ()=>Navigation
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$leaf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Leaf$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/leaf.js [app-ssr] (ecmascript) <export default as Leaf>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/chart-column.js [app-ssr] (ecmascript) <export default as BarChart3>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/droplet.js [app-ssr] (ecmascript) <export default as Droplet>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/dollar-sign.js [app-ssr] (ecmascript) <export default as DollarSign>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/trophy.js [app-ssr] (ecmascript) <export default as Trophy>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/truck.js [app-ssr] (ecmascript) <export default as Truck>");
-"use client";
-;
-;
-function Navigation({ currentPage, setCurrentPage, userRole, setUserRole }) {
-    // Check if user is authenticated as admin via sessionStorage (password login)
-    const isAuthenticatedAdmin = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && sessionStorage.getItem("adminMode") === "true";
-    const userNavItems = [
-        {
-            id: "dashboard",
-            label: "Dashboard",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"]
-        },
-        {
-            id: "tracker",
-            label: "Trash Tracker",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__["Droplet"]
-        },
-        {
-            id: "waste-types",
-            label: "Waste Guide",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$leaf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Leaf$3e$__["Leaf"]
-        },
-        {
-            id: "cost",
-            label: "Cost Tracker",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"]
-        },
-        {
-            id: "vehicle",
-            label: "Vehicle Route",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__["Truck"]
-        },
-        {
-            id: "achievements",
-            label: "Achievements",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"]
-        }
-    ];
-    const adminNavItems = [
-        {
-            id: "dashboard",
-            label: "Dashboard",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"]
-        },
-        {
-            id: "tracker",
-            label: "Trash Tracker",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__["Droplet"]
-        },
-        {
-            id: "cost",
-            label: "Cost Tracker",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"]
-        },
-        {
-            id: "vehicle",
-            label: "Vehicle Route",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__["Truck"]
-        }
-    ];
-    // Only show admin nav if authenticated as admin
-    const navItems = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : userNavItems;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-        className: "fixed top-0 left-0 right-0 h-16 bg-white/95 border-b border-border/40 backdrop-blur-md z-50 shadow-sm",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-center gap-3",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-10 h-10 rounded-full bg-gradient-to-br from-primary to-teal-accent flex items-center justify-center text-white font-bold text-lg shadow-md",
-                            children: "N"
-                        }, void 0, false, {
-                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                            lineNumber: 39,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-xl font-bold text-foreground tracking-tight",
-                            children: "NeatStreet"
-                        }, void 0, false, {
-                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                            lineNumber: 42,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                    lineNumber: 38,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "hidden md:flex items-center gap-1",
-                    children: [
-                        navItems.map((item)=>{
-                            const Icon = item.icon;
-                            const isActive = currentPage === item.id;
-                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setCurrentPage(item.id),
-                                className: `flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-200 text-sm font-medium ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"}`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
-                                        size: 18
-                                    }, void 0, false, {
-                                        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                                        lineNumber: 59,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: item.label
-                                    }, void 0, false, {
-                                        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                                        lineNumber: 60,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, item.id, true, {
-                                fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                                lineNumber: 50,
-                                columnNumber: 15
-                            }, this);
-                        }),
-                        isAuthenticatedAdmin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "ml-4 pl-4 border-l border-border/40",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary/20 text-primary",
-                                children: "Admin Mode"
-                            }, void 0, false, {
-                                fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                                lineNumber: 67,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                            lineNumber: 66,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                    lineNumber: 45,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "md:hidden flex items-center gap-2",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                            value: currentPage,
-                            onChange: (e)=>setCurrentPage(e.target.value),
-                            className: "px-3 py-2 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary",
-                            children: navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                    value: item.id,
-                                    children: item.label
-                                }, item.id, false, {
-                                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                                    lineNumber: 81,
-                                    columnNumber: 15
-                                }, this))
-                        }, void 0, false, {
-                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                            lineNumber: 75,
-                            columnNumber: 11
-                        }, this),
-                        isAuthenticatedAdmin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "px-2 py-1 rounded text-xs font-semibold bg-primary/20 text-primary",
-                            children: "Admin"
-                        }, void 0, false, {
-                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                            lineNumber: 88,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-                    lineNumber: 74,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-            lineNumber: 37,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
-        lineNumber: 36,
-        columnNumber: 5
-    }, this);
-}
-}),
 "[project]/v0-neat-street-ui-design/lib/utils.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -291,6 +86,265 @@ function Button({ className, variant, size, asChild = false, ...props }) {
     }, this);
 }
 ;
+}),
+"[project]/v0-neat-street-ui-design/components/navigation.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Navigation
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$leaf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Leaf$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/leaf.js [app-ssr] (ecmascript) <export default as Leaf>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/chart-column.js [app-ssr] (ecmascript) <export default as BarChart3>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/droplet.js [app-ssr] (ecmascript) <export default as Droplet>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/dollar-sign.js [app-ssr] (ecmascript) <export default as DollarSign>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/trophy.js [app-ssr] (ecmascript) <export default as Trophy>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/truck.js [app-ssr] (ecmascript) <export default as Truck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/node_modules/lucide-react/dist/esm/icons/log-out.js [app-ssr] (ecmascript) <export default as LogOut>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/v0-neat-street-ui-design/components/ui/button.tsx [app-ssr] (ecmascript)");
+"use client";
+;
+;
+;
+function Navigation({ currentPage, setCurrentPage, userRole, setUserRole, userEmail, userLabel, onLogout }) {
+    // Check if user is authenticated as admin via sessionStorage (password login)
+    const isAuthenticatedAdmin = ("TURBOPACK compile-time value", "undefined") !== 'undefined' && sessionStorage.getItem("adminMode") === "true";
+    const userNavItems = [
+        {
+            id: "dashboard",
+            label: "Dashboard",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"]
+        },
+        {
+            id: "tracker",
+            label: "Trash Tracker",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__["Droplet"]
+        },
+        {
+            id: "waste-types",
+            label: "Waste Guide",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$leaf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Leaf$3e$__["Leaf"]
+        },
+        {
+            id: "cost",
+            label: "Cost Tracker",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"]
+        },
+        {
+            id: "vehicle",
+            label: "Vehicle Route",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__["Truck"]
+        },
+        {
+            id: "achievements",
+            label: "Achievements",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"]
+        }
+    ];
+    const adminNavItems = [
+        {
+            id: "dashboard",
+            label: "Dashboard",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"]
+        },
+        {
+            id: "tracker",
+            label: "Trash Tracker",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplet$3e$__["Droplet"]
+        },
+        {
+            id: "cost",
+            label: "Cost Tracker",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"]
+        },
+        {
+            id: "vehicle",
+            label: "Vehicle Route",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__["Truck"]
+        }
+    ];
+    // Only show admin nav if authenticated as admin
+    const navItems = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : userNavItems;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+        className: "fixed top-0 left-0 right-0 h-16 bg-white/95 border-b border-border/40 backdrop-blur-md z-50 shadow-sm",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center gap-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "w-10 h-10 rounded-full bg-gradient-to-br from-primary to-teal-accent flex items-center justify-center text-white font-bold text-lg shadow-md",
+                            children: "N"
+                        }, void 0, false, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 51,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-xl font-bold text-foreground tracking-tight",
+                            children: "NeatStreet"
+                        }, void 0, false, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 54,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                    lineNumber: 50,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "hidden md:flex items-center gap-1",
+                    children: [
+                        navItems.map((item)=>{
+                            const Icon = item.icon;
+                            const isActive = currentPage === item.id;
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setCurrentPage(item.id),
+                                className: `flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all duration-200 text-sm font-medium ${isActive ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                        size: 18
+                                    }, void 0, false, {
+                                        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                        lineNumber: 71,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: item.label
+                                    }, void 0, false, {
+                                        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                        lineNumber: 72,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, item.id, true, {
+                                fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                lineNumber: 62,
+                                columnNumber: 15
+                            }, this);
+                        }),
+                        isAuthenticatedAdmin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "ml-2 pl-2 border-l border-border/40",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "px-2 py-1 rounded-lg text-xs font-semibold bg-primary/20 text-primary",
+                                children: "Admin"
+                            }, void 0, false, {
+                                fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                lineNumber: 79,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 78,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                    lineNumber: 57,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center gap-2",
+                    children: [
+                        userEmail && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-right hidden sm:block",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm font-medium text-foreground truncate max-w-[120px]",
+                                    children: userEmail
+                                }, void 0, false, {
+                                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                    lineNumber: 90,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-xs text-muted-foreground",
+                                    children: userLabel
+                                }, void 0, false, {
+                                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                    lineNumber: 91,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 89,
+                            columnNumber: 13
+                        }, this),
+                        onLogout && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                            variant: "outline",
+                            size: "sm",
+                            onClick: onLogout,
+                            className: "gap-1 shrink-0",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"], {
+                                    size: 14
+                                }, void 0, false, {
+                                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                    lineNumber: 96,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "hidden sm:inline",
+                                    children: "Logout"
+                                }, void 0, false, {
+                                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                    lineNumber: 97,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 95,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "md:hidden",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                value: currentPage,
+                                onChange: (e)=>setCurrentPage(e.target.value),
+                                className: "px-2 py-1.5 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary",
+                                children: navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                        value: item.id,
+                                        children: item.label
+                                    }, item.id, false, {
+                                        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                        lineNumber: 109,
+                                        columnNumber: 17
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                                lineNumber: 103,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                            lineNumber: 102,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+                    lineNumber: 87,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+            lineNumber: 49,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/v0-neat-street-ui-design/components/navigation.tsx",
+        lineNumber: 48,
+        columnNumber: 5
+    }, this);
+}
 }),
 "[project]/v0-neat-street-ui-design/components/ui/card.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -1365,7 +1419,7 @@ function AdminDashboard() {
                 });
             }
             // Fetch all users for the user selector
-            const { data: allUsers } = await supabase.from('profiles').select('id, email, full_name, total_waste_logged, green_score').order('email');
+            const { data: allUsers } = await supabase.from('profiles').select('id, email, username, full_name, total_waste_logged, green_score').order('username');
             if (allUsers) {
                 setUsers(allUsers);
             }
@@ -1471,7 +1525,7 @@ function AdminDashboard() {
                         className: "animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                        lineNumber: 343,
+                        lineNumber: 344,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1479,18 +1533,18 @@ function AdminDashboard() {
                         children: "Loading admin dashboard..."
                     }, void 0, false, {
                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                        lineNumber: 344,
+                        lineNumber: 345,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                lineNumber: 342,
+                lineNumber: 343,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-            lineNumber: 341,
+            lineNumber: 342,
             columnNumber: 7
         }, this);
     }
@@ -1507,7 +1561,7 @@ function AdminDashboard() {
                             children: "Admin Dashboard"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 355,
+                            lineNumber: 356,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1515,13 +1569,13 @@ function AdminDashboard() {
                             children: "System overview and fleet management"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 356,
+                            lineNumber: 357,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 354,
+                    lineNumber: 355,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1540,7 +1594,7 @@ function AdminDashboard() {
                                                     children: "Total Waste (Week)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 364,
+                                                    lineNumber: 365,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1551,13 +1605,13 @@ function AdminDashboard() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 367,
+                                                    lineNumber: 368,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 363,
+                                            lineNumber: 364,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1567,18 +1621,18 @@ function AdminDashboard() {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 370,
+                                                lineNumber: 371,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 369,
+                                            lineNumber: 370,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 362,
+                                    lineNumber: 363,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1590,13 +1644,13 @@ function AdminDashboard() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 373,
+                                    lineNumber: 374,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 361,
+                            lineNumber: 362,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1612,7 +1666,7 @@ function AdminDashboard() {
                                                     children: "Active Users"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 379,
+                                                    lineNumber: 380,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1620,13 +1674,13 @@ function AdminDashboard() {
                                                     children: stats.totalUsers
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 380,
+                                                    lineNumber: 381,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 378,
+                                            lineNumber: 379,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1636,18 +1690,18 @@ function AdminDashboard() {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 383,
+                                                lineNumber: 384,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 382,
+                                            lineNumber: 383,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 377,
+                                    lineNumber: 378,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1655,13 +1709,13 @@ function AdminDashboard() {
                                     children: "Total registered users"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 386,
+                                    lineNumber: 387,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 376,
+                            lineNumber: 377,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1677,7 +1731,7 @@ function AdminDashboard() {
                                                     children: "Active Routes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 392,
+                                                    lineNumber: 393,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1685,13 +1739,13 @@ function AdminDashboard() {
                                                     children: stats.activeRoutes
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 395,
+                                                    lineNumber: 396,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 391,
+                                            lineNumber: 392,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1701,18 +1755,18 @@ function AdminDashboard() {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 398,
+                                                lineNumber: 399,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 397,
+                                            lineNumber: 398,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 390,
+                                    lineNumber: 391,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1720,13 +1774,13 @@ function AdminDashboard() {
                                     children: "Currently operational"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 401,
+                                    lineNumber: 402,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 389,
+                            lineNumber: 390,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1742,7 +1796,7 @@ function AdminDashboard() {
                                                     children: "Fleet Costs"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 407,
+                                                    lineNumber: 408,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1753,13 +1807,13 @@ function AdminDashboard() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 408,
+                                                    lineNumber: 409,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 406,
+                                            lineNumber: 407,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1769,18 +1823,18 @@ function AdminDashboard() {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 411,
+                                                lineNumber: 412,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 410,
+                                            lineNumber: 411,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 405,
+                                    lineNumber: 406,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1788,19 +1842,19 @@ function AdminDashboard() {
                                     children: "This week"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 414,
+                                    lineNumber: 415,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 404,
+                            lineNumber: 405,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 360,
+                    lineNumber: 361,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1814,7 +1868,7 @@ function AdminDashboard() {
                                     children: "Weekly Waste Collection"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 422,
+                                    lineNumber: 423,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$ResponsiveContainer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ResponsiveContainer"], {
@@ -1828,7 +1882,7 @@ function AdminDashboard() {
                                                 stroke: "var(--border)"
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 425,
+                                                lineNumber: 426,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["XAxis"], {
@@ -1836,14 +1890,14 @@ function AdminDashboard() {
                                                 stroke: "var(--muted-foreground)"
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 426,
+                                                lineNumber: 427,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["YAxis"], {
                                                 stroke: "var(--muted-foreground)"
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 427,
+                                                lineNumber: 428,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -1854,7 +1908,7 @@ function AdminDashboard() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 428,
+                                                lineNumber: 429,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Line$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Line"], {
@@ -1868,24 +1922,24 @@ function AdminDashboard() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 435,
+                                                lineNumber: 436,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 424,
+                                        lineNumber: 425,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 423,
+                                    lineNumber: 424,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 421,
+                            lineNumber: 422,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1896,7 +1950,7 @@ function AdminDashboard() {
                                     children: "Waste Distribution"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 448,
+                                    lineNumber: 449,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$ResponsiveContainer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ResponsiveContainer"], {
@@ -1916,28 +1970,28 @@ function AdminDashboard() {
                                                         fill: entry.color
                                                     }, `cell-${index}`, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 461,
+                                                        lineNumber: 462,
                                                         columnNumber: 21
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 451,
+                                                lineNumber: 452,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {}, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 464,
+                                                lineNumber: 465,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 450,
+                                        lineNumber: 451,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 449,
+                                    lineNumber: 450,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1955,7 +2009,7 @@ function AdminDashboard() {
                                                             }
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 471,
+                                                            lineNumber: 472,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1963,13 +2017,13 @@ function AdminDashboard() {
                                                             children: type.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 472,
+                                                            lineNumber: 473,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 470,
+                                                    lineNumber: 471,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1980,30 +2034,30 @@ function AdminDashboard() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 474,
+                                                    lineNumber: 475,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, type.name, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 469,
+                                            lineNumber: 470,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 467,
+                                    lineNumber: 468,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 447,
+                            lineNumber: 448,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 419,
+                    lineNumber: 420,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2014,7 +2068,7 @@ function AdminDashboard() {
                             children: "Vehicle Routes Performance"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 483,
+                            lineNumber: 484,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$ResponsiveContainer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ResponsiveContainer"], {
@@ -2028,7 +2082,7 @@ function AdminDashboard() {
                                         stroke: "var(--border)"
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 486,
+                                        lineNumber: 487,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["XAxis"], {
@@ -2036,14 +2090,14 @@ function AdminDashboard() {
                                         stroke: "var(--muted-foreground)"
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 487,
+                                        lineNumber: 488,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["YAxis"], {
                                         stroke: "var(--muted-foreground)"
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 488,
+                                        lineNumber: 489,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -2054,7 +2108,7 @@ function AdminDashboard() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 489,
+                                        lineNumber: 490,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Bar"], {
@@ -2068,7 +2122,7 @@ function AdminDashboard() {
                                         ]
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 496,
+                                        lineNumber: 497,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Bar"], {
@@ -2082,24 +2136,24 @@ function AdminDashboard() {
                                         ]
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 497,
+                                        lineNumber: 498,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                lineNumber: 485,
+                                lineNumber: 486,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 484,
+                            lineNumber: 485,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 482,
+                    lineNumber: 483,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2110,7 +2164,7 @@ function AdminDashboard() {
                             children: "Route Details"
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 504,
+                            lineNumber: 505,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2127,7 +2181,7 @@ function AdminDashboard() {
                                                     children: "Route"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 509,
+                                                    lineNumber: 510,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2135,7 +2189,7 @@ function AdminDashboard() {
                                                     children: "Stops"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 510,
+                                                    lineNumber: 511,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2143,7 +2197,7 @@ function AdminDashboard() {
                                                     children: "Distance (km)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 511,
+                                                    lineNumber: 512,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2151,7 +2205,7 @@ function AdminDashboard() {
                                                     children: "Cost"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 512,
+                                                    lineNumber: 513,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2159,18 +2213,18 @@ function AdminDashboard() {
                                                     children: "Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 513,
+                                                    lineNumber: 514,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 508,
+                                            lineNumber: 509,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 507,
+                                        lineNumber: 508,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2181,12 +2235,12 @@ function AdminDashboard() {
                                                 children: "No routes found"
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 519,
+                                                lineNumber: 520,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 518,
+                                            lineNumber: 519,
                                             columnNumber: 19
                                         }, this) : vehicleData.map((route)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
                                                 className: "border-b border-border/50 hover:bg-muted/20 transition-colors",
@@ -2196,7 +2250,7 @@ function AdminDashboard() {
                                                         children: route.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 526,
+                                                        lineNumber: 527,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2204,7 +2258,7 @@ function AdminDashboard() {
                                                         children: route.trips
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 527,
+                                                        lineNumber: 528,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2212,7 +2266,7 @@ function AdminDashboard() {
                                                         children: route.distance
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 528,
+                                                        lineNumber: 529,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2223,7 +2277,7 @@ function AdminDashboard() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 529,
+                                                        lineNumber: 530,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2233,40 +2287,40 @@ function AdminDashboard() {
                                                             children: route.status.charAt(0).toUpperCase() + route.status.slice(1)
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 531,
+                                                            lineNumber: 532,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 530,
+                                                        lineNumber: 531,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, route.name, true, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 525,
+                                                lineNumber: 526,
                                                 columnNumber: 21
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 516,
+                                        lineNumber: 517,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                lineNumber: 506,
+                                lineNumber: 507,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 505,
+                            lineNumber: 506,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 503,
+                    lineNumber: 504,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2280,7 +2334,7 @@ function AdminDashboard() {
                                     children: "User Waste Logs"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 550,
+                                    lineNumber: 551,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2295,21 +2349,21 @@ function AdminDashboard() {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 557,
+                                                    lineNumber: 558,
                                                     columnNumber: 17
                                                 }, this),
-                                                selectedUser ? selectedUser.email : "Select User",
+                                                selectedUser ? selectedUser.username || selectedUser.email : "Select User",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 559,
+                                                    lineNumber: 560,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 552,
+                                            lineNumber: 553,
                                             columnNumber: 15
                                         }, this),
                                         showUserSelector && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2322,7 +2376,7 @@ function AdminDashboard() {
                                                         children: "Select a user to view logs"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 566,
+                                                        lineNumber: 567,
                                                         columnNumber: 21
                                                     }, this),
                                                     users.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2330,7 +2384,7 @@ function AdminDashboard() {
                                                         children: "No users found"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 568,
+                                                        lineNumber: 569,
                                                         columnNumber: 23
                                                     }, this) : users.map((user)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             onClick: ()=>handleSelectUser(user),
@@ -2338,10 +2392,10 @@ function AdminDashboard() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "font-medium text-foreground text-sm",
-                                                                    children: user.email
+                                                                    children: user.username || user.email
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                                    lineNumber: 576,
+                                                                    lineNumber: 577,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2355,36 +2409,36 @@ function AdminDashboard() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                                    lineNumber: 577,
+                                                                    lineNumber: 578,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, user.id, true, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 571,
+                                                            lineNumber: 572,
                                                             columnNumber: 25
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 565,
+                                                lineNumber: 566,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 564,
+                                            lineNumber: 565,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 551,
+                                    lineNumber: 552,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 549,
+                            lineNumber: 550,
                             columnNumber: 11
                         }, this),
                         selectedUser && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2394,10 +2448,10 @@ function AdminDashboard() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "font-semibold text-foreground",
-                                            children: selectedUser.email
+                                            children: selectedUser.username || selectedUser.email
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 593,
+                                            lineNumber: 594,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2411,13 +2465,13 @@ function AdminDashboard() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 594,
+                                            lineNumber: 595,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 592,
+                                    lineNumber: 593,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2428,18 +2482,18 @@ function AdminDashboard() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                        lineNumber: 599,
+                                        lineNumber: 600,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 598,
+                                    lineNumber: 599,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 591,
+                            lineNumber: 592,
                             columnNumber: 13
                         }, this),
                         loadingUserLogs ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2449,7 +2503,7 @@ function AdminDashboard() {
                                     className: "animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-3"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 607,
+                                    lineNumber: 608,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2457,13 +2511,13 @@ function AdminDashboard() {
                                     children: "Loading user logs..."
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 608,
+                                    lineNumber: 609,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 606,
+                            lineNumber: 607,
                             columnNumber: 13
                         }, this) : selectedUser ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "overflow-x-auto",
@@ -2480,7 +2534,7 @@ function AdminDashboard() {
                                                         children: "Date"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 615,
+                                                        lineNumber: 616,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2488,7 +2542,7 @@ function AdminDashboard() {
                                                         children: "Type"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 616,
+                                                        lineNumber: 617,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2496,7 +2550,7 @@ function AdminDashboard() {
                                                         children: "Weight"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 617,
+                                                        lineNumber: 618,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2504,7 +2558,7 @@ function AdminDashboard() {
                                                         children: "Cost"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 618,
+                                                        lineNumber: 619,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2512,7 +2566,7 @@ function AdminDashboard() {
                                                         children: "Location"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 619,
+                                                        lineNumber: 620,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2520,18 +2574,18 @@ function AdminDashboard() {
                                                         children: "Notes"
                                                     }, void 0, false, {
                                                         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                        lineNumber: 620,
+                                                        lineNumber: 621,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 614,
+                                                lineNumber: 615,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 613,
+                                            lineNumber: 614,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2542,12 +2596,12 @@ function AdminDashboard() {
                                                     children: "No waste logs found for this user"
                                                 }, void 0, false, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 626,
+                                                    lineNumber: 627,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                lineNumber: 625,
+                                                lineNumber: 626,
                                                 columnNumber: 21
                                             }, this) : userLogs.map((log)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
                                                     className: "border-b border-border/50 hover:bg-muted/20 transition-colors",
@@ -2563,7 +2617,7 @@ function AdminDashboard() {
                                                             })
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 633,
+                                                            lineNumber: 634,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2573,12 +2627,12 @@ function AdminDashboard() {
                                                                 children: log.waste_type_name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                                lineNumber: 643,
+                                                                lineNumber: 644,
                                                                 columnNumber: 27
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 642,
+                                                            lineNumber: 643,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2589,7 +2643,7 @@ function AdminDashboard() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 647,
+                                                            lineNumber: 648,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2600,7 +2654,7 @@ function AdminDashboard() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 648,
+                                                            lineNumber: 649,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2608,7 +2662,7 @@ function AdminDashboard() {
                                                             children: log.location || '-'
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 649,
+                                                            lineNumber: 650,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2616,24 +2670,24 @@ function AdminDashboard() {
                                                             children: log.notes || '-'
                                                         }, void 0, false, {
                                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                            lineNumber: 650,
+                                                            lineNumber: 651,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, log.id, true, {
                                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                                    lineNumber: 632,
+                                                    lineNumber: 633,
                                                     columnNumber: 23
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                            lineNumber: 623,
+                                            lineNumber: 624,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 612,
+                                    lineNumber: 613,
                                     columnNumber: 15
                                 }, this),
                                 userLogs.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2645,13 +2699,13 @@ function AdminDashboard() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 659,
+                                    lineNumber: 660,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 611,
+                            lineNumber: 612,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "py-12 text-center",
@@ -2661,7 +2715,7 @@ function AdminDashboard() {
                                     size: 40
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 666,
+                                    lineNumber: 667,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2669,30 +2723,30 @@ function AdminDashboard() {
                                     children: "Select a user to view their waste logs"
                                 }, void 0, false, {
                                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                                    lineNumber: 667,
+                                    lineNumber: 668,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                            lineNumber: 665,
+                            lineNumber: 666,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-                    lineNumber: 548,
+                    lineNumber: 549,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-            lineNumber: 352,
+            lineNumber: 353,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/v0-neat-street-ui-design/components/admin-dashboard.tsx",
-        lineNumber: 351,
+        lineNumber: 352,
         columnNumber: 5
     }, this);
 }
@@ -6701,7 +6755,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2
 ;
 ;
 ;
-function DashboardClient({ user, isAdmin }) {
+function DashboardClient({ user, isAdmin, username }) {
     const [currentPage, setCurrentPage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("dashboard");
     const [showAddLog, setShowAddLog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [userRole, setUserRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("user");
@@ -6734,7 +6788,7 @@ function DashboardClient({ user, isAdmin }) {
                 setCurrentPage: setCurrentPage,
                 userRole: userRole,
                 setUserRole: setUserRole,
-                userEmail: isAuthenticatedAdmin ? "Administrator" : user?.email,
+                userEmail: isAuthenticatedAdmin ? "Administrator" : username || user?.email,
                 userLabel: isAuthenticatedAdmin ? "Admin Access" : "User",
                 onLogout: handleLogout
             }, void 0, false, {
@@ -6842,6 +6896,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2
 ;
 function DashboardPage() {
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isAdmin, setIsAdmin] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -6859,9 +6914,10 @@ function DashboardPage() {
                 return;
             }
             setUser(user);
-            // Check if user is admin from profile
-            const { data: profile } = await supabase.from('profiles').select('is_admin').eq('id', user.id).single();
+            // Check if user is admin from profile and get username
+            const { data: profile } = await supabase.from('profiles').select('is_admin, username').eq('id', user.id).single();
             setIsAdmin(profile?.is_admin === true || user?.user_metadata?.is_admin === true);
+            setUsername(profile?.username || user?.user_metadata?.username || null);
             setLoading(false);
         };
         checkAuth();
@@ -6878,7 +6934,7 @@ function DashboardPage() {
                         className: "animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/v0-neat-street-ui-design/app/dashboard/page.tsx",
-                        lineNumber: 55,
+                        lineNumber: 58,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6886,31 +6942,32 @@ function DashboardPage() {
                         children: "Loading..."
                     }, void 0, false, {
                         fileName: "[project]/v0-neat-street-ui-design/app/dashboard/page.tsx",
-                        lineNumber: 56,
+                        lineNumber: 59,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/v0-neat-street-ui-design/app/dashboard/page.tsx",
-                lineNumber: 54,
+                lineNumber: 57,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/v0-neat-street-ui-design/app/dashboard/page.tsx",
-            lineNumber: 53,
+            lineNumber: 56,
             columnNumber: 7
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$v0$2d$neat$2d$street$2d$ui$2d$design$2f$components$2f$dashboard$2d$client$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         user: user,
-        isAdmin: isAdmin
+        isAdmin: isAdmin,
+        username: username
     }, void 0, false, {
         fileName: "[project]/v0-neat-street-ui-design/app/dashboard/page.tsx",
-        lineNumber: 62,
+        lineNumber: 65,
         columnNumber: 10
     }, this);
 }
 }),
 ];
 
-//# sourceMappingURL=v0-neat-street-ui-design_806eacc6._.js.map
+//# sourceMappingURL=v0-neat-street-ui-design_1350c58b._.js.map

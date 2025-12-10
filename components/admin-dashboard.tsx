@@ -45,6 +45,7 @@ interface VehicleData {
 interface UserProfile {
   id: string
   email: string
+  username: string | null
   full_name: string | null
   total_waste_logged: number
   green_score: number
@@ -204,8 +205,8 @@ export default function AdminDashboard() {
       // Fetch all users for the user selector
       const { data: allUsers } = await supabase
         .from('profiles')
-        .select('id, email, full_name, total_waste_logged, green_score')
-        .order('email')
+        .select('id, email, username, full_name, total_waste_logged, green_score')
+        .order('username')
 
       if (allUsers) {
         setUsers(allUsers)
@@ -555,7 +556,7 @@ export default function AdminDashboard() {
                 className="gap-2"
               >
                 <Users size={16} />
-                {selectedUser ? selectedUser.email : "Select User"}
+                {selectedUser ? (selectedUser.username || selectedUser.email) : "Select User"}
                 <ChevronDown size={16} />
               </Button>
 
@@ -573,7 +574,7 @@ export default function AdminDashboard() {
                           onClick={() => handleSelectUser(user)}
                           className="w-full text-left px-3 py-3 rounded-lg hover:bg-muted/60 transition-colors"
                         >
-                          <p className="font-medium text-foreground text-sm">{user.email}</p>
+                          <p className="font-medium text-foreground text-sm">{user.username || user.email}</p>
                           <p className="text-xs text-muted-foreground">
                             {user.full_name || 'No name'} • {user.total_waste_logged || 0} kg logged • Score: {user.green_score || 0}
                           </p>
@@ -590,7 +591,7 @@ export default function AdminDashboard() {
           {selectedUser && (
             <div className="mb-4 p-4 bg-muted/30 rounded-lg flex items-center justify-between">
               <div>
-                <p className="font-semibold text-foreground">{selectedUser.email}</p>
+                <p className="font-semibold text-foreground">{selectedUser.username || selectedUser.email}</p>
                 <p className="text-sm text-muted-foreground">
                   {selectedUser.full_name || 'No name'} • Total: {selectedUser.total_waste_logged || 0} kg • Green Score: {selectedUser.green_score || 0}
                 </p>
